@@ -4,7 +4,7 @@ import psycopg
 
 
 def create_app() -> FastAPI:
-    Settings = get_settings()
+    settings = get_settings()
 
     app = FastAPI(
         title="CloudTicket API",

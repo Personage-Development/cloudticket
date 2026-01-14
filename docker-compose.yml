@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    container_name: cloudticket-db
+    environment:
+      POSTGRES_USER: cloudticket
+      POSTGRES_PASSWORD: cloudticket_password_change_me
+      POSTGRES_DB: cloudticket
+    ports:
+      - "5432:5432"
+    volumes:
+      - cloudticket_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cloudticket -d cloudticket"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  cloudticket_db_data:
